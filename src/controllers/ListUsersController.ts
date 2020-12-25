@@ -5,14 +5,19 @@ import { AxiosResponse } from "axios"
 
 export default class ListUsersController {
   public async list(req: Request, res: Response) {
-    const since = req.query["since"] || 0
-    const { headers, data } = await githubApi.get<
-      any,
-      AxiosResponse<IUsersList>
-    >(`/users?since=${since}`)
-    return res.json({
-      link: headers.link,
-      data,
-    })
+    try {
+      const since = req.query["since"] || 0
+      const { headers, data } = await githubApi.get<
+        any,
+        AxiosResponse<IUsersList>
+      >(`/users?since=${since}`)
+
+      return res.json({
+        link: headers.link,
+        data,
+      })
+    } catch (error) {
+      res.status(error.status).send(error)
+    }
   }
 }
