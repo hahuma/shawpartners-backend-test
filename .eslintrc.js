@@ -2,6 +2,7 @@ module.exports = {
   env: {
     node: true,
     es2021: true,
+    jest: true,
   },
   extends: ["standard", "plugin:prettier/recommended"],
   parser: "@typescript-eslint/parser",
@@ -11,6 +12,6 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "prettier"],
   rules: {
-    "prettier/prettier": 'error',
+    "prettier/prettier": "error",
   },
-};
+}
