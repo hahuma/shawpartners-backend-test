@@ -1,11 +1,10 @@
 import express, { Express } from "express"
 import cors from "cors"
 
-import routes from "./routes"
+import dotenv from 'dotenv'
 
-const corsOptions = {
-  origin: process.env.APP_URL || undefined,
-}
+import routes from "./routes"
+dotenv.config()
 class App {
   public express: Express
 
@@ -17,7 +16,7 @@ class App {
 
   private _middlewares() {
     this.express.use(express.json())
-    this.express.use(cors(corsOptions))
+    this.express.use(cors())
   }
 
   private _routes() {
